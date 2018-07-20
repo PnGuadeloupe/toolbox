@@ -1,11 +1,15 @@
-From `https://sites.google.com/a/chromium.org/chromedriver/downloads`
+Depuis le site `https://sites.google.com/a/chromium.org/chromedriver/downloads`:
 
-Download `wget https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip`
+Télécharger `wget https://chromedriver.storage.googleapis.com/2.40/chromedriver_linux64.zip`
 
-Unzip it into the `lib` directory.
+Dézipper le paquet dans le répertoire `lib`.
 
- Call the script using environment variable to store temporary your credentials:
+Appeler le script en utilisant des variables d'environnements:
+* VIRTUALIA_NOM
+* VIRTUALIA_PRENOM
+* VIRTUALIA_PASSWORD
+
  ```bash
-VIRTUALIA_NOM=TON_NAME VIRTUALIA_PRENOM=ton_prenom VIRTUALIA_PASSWORD=mot_de_pass /home/trimaille/dev/toolbox/venv/bin/python3.6 /home/trimaille/dev/toolbox/virtualia/badge.py
+VIRTUALIA_NOM=TON_NOM VIRTUALIA_PRENOM=ton_prenom VIRTUALIA_PASSWORD=mot_de_passe /home/trimaille/dev/toolbox/venv/bin/python3.6 /home/trimaille/dev/toolbox/virtualia/badge.py
 
 ```

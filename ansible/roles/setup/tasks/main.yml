@@ -1,0 +1,21 @@
+---
+    - name: Installation des packages
+      apt: name={{ item }} update_cache=yes state=latest
+      become: true
+      with_items:
+        - vim
+        - htop
+        - git
+        - ca-certificates
+        - avahi-daemon
+        - byobu
+
+    - name: MAJ des paquets APT
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Petite aide pour la saisie des commandes
+      template: src=templates/inputrc dest=~/.inputrc
+...

@@ -1,0 +1,8 @@
+---
+- name: Installation des serveurs
+  hosts: karudata,karunati
+  remote_user: karuadmin
+
+  roles:
+    - setup
+...
