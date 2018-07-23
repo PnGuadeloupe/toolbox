@@ -6,16 +6,20 @@
     command: git fetch origin
     args:
       chdir: /srv/lizmap_png/
+    changed_when: false
 
   - name: git merge origin/release_3_2
     become: true
     command: git merge origin/release_3_2
+    register: merge_result
     args:
       chdir: /srv/lizmap_png/
+    changed_when: "merge_result.stdout != 'Déjà à jour.'"
 
   - name: restart nginx
     become: true
     service: name=nginx state=restarted
+    when: "merge_result.stdout != 'Déjà à jour.'"
 
   - name: Git log
     become: true
@@ -23,11 +27,11 @@
     args:
       chdir: /srv/lizmap_png/
     register: git_log_png
-    changed: false
+    changed_when: false
 
   - name: Dernier commit sur la branche lizmap 3.2
     debug: msg="{{ git_log_png.stdout }}"
-    changed: false
+    changed_when: false
 
   - name: Check lizmap_png and HTTP status = 200
     uri:
