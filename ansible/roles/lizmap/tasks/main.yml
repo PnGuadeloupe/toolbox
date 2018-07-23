@@ -1,0 +1,36 @@
+---
+# Absence de module git merge dans Ansible
+
+  - name: git fetch origin
+    become: true
+    command: git fetch origin
+    args:
+      chdir: /srv/lizmap_png/
+
+  - name: git merge origin/release_3_2
+    become: true
+    command: git merge origin/release_3_2
+    args:
+      chdir: /srv/lizmap_png/
+
+  - name: restart nginx
+    become: true
+    service: name=nginx state=restarted
+
+  - name: Git log
+    become: true
+    command: "git log -n 1 --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+    args:
+      chdir: /srv/lizmap_png/
+    register: git_log_png
+    changed: false
+
+  - name: Dernier commit sur la branche lizmap 3.2
+    debug: msg="{{ git_log_png.stdout }}"
+    changed: false
+
+  - name: Check lizmap_png and HTTP status = 200
+    uri:
+      url: http://lizmap.pn971.net/
+
+...

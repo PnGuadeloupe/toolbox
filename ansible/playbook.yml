@@ -2,7 +2,12 @@
 - name: Installation des serveurs
   hosts: karudata,karunati
   remote_user: karuadmin
-
   roles:
     - setup
+
+- name: MAJ des instances lizmap
+  hosts: karunati
+  remote_user: karuadmin
+  roles:
+    - lizmap
 ...
