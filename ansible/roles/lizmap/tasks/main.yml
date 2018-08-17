@@ -11,7 +11,7 @@
     changed_when: false
 
 
-# Absence de module GIT merge dans Ansible
+  # Absence de module GIT merge dans Ansible
 
   - name: git fetch origin sur les instances lizmap
     become: true
@@ -48,6 +48,15 @@
 
   - name: Dernier commit sur la branche lizmap PNG 3.2
     debug: msg="{{ git_log_png.stdout }}"
+    changed_when: false
+
+  - name: Get QGIS Server version
+    command: "apt policy qgis-server"
+    register: apt_qgis_server
+    changed_when: false
+
+  - name: Check QGIS Server version
+    debug: msg="{{ apt_qgis_server.stdout }}"
     changed_when: false
 
   - name: Check http://lizmap.pn971.net/
