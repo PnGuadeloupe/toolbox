@@ -1,6 +1,6 @@
 ---
     - name: Installation des packages
-      apt: name={{ item }} update_cache=yes state=latest
+      apt: name={{ item }} update_cache=yes state=latest cache_valid_time=3600
       become: true
       with_items:
         - vim
@@ -9,6 +9,9 @@
         - ca-certificates
         - avahi-daemon
         - byobu
+        - python-pip
+        - python-dev
+        - unzip
 
     - name: MAJ des paquets APT
       become: true
@@ -16,6 +19,32 @@
         upgrade: yes
         update_cache: yes
 
-    - name: Petite aide pour la saisie des commandes
-      template: src=templates/inputrc dest=~/.inputrc
+    - name: Saisie des commandes avec inputrc
+      template: src=templates/inputrc dest={{ item }}/.inputrc
+      become: true
+      with_items:
+        - /home/{{ ansible_user }}
+        - /root
+
+    - name: Editeur Nano
+      template: src=templates/nanorc dest={{ item }}/.nanorc
+      become: true
+      with_items:
+        - /home/{{ ansible_user }}
+        - /root
+
+    - name: Editeur Vim
+      template: src=templates/vimrc dest={{ item }}/.vimrc
+      become: true
+      with_items:
+        - /home/{{ ansible_user }}
+        - /root
+
+    - name: Configuration de Git
+      template: src=templates/gitconfig dest={{ item }}/.gitconfig
+      become: true
+      with_items:
+        - /home/{{ ansible_user }}
+        - /root
+
 ...
