@@ -5,9 +5,15 @@
   roles:
     - setup
 
-- name: MAJ des instances lizmap
+- name: Installation de karunati
   hosts: karunati
   remote_user: karuadmin
   roles:
-    - lizmap
+    - karunati
+
+- name: Installation de karudata
+  hosts: karudata
+  remote_user: karuadmin
+  roles:
+    - karudata
 ...
