@@ -1,7 +1,7 @@
-#-----------------------------------
-# THIS FILE IS INSTALLED BY ANSIBLE
-# ALL CHANGES WILL BE LOST
-#-----------------------------------
+" ----------------------------------
+" THIS FILE IS INSTALLED BY ANSIBLE
+" ALL CHANGES WILL BE LOST
+" -----------------------------------
 
 syntax on
 set number
