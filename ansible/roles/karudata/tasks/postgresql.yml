@@ -1,0 +1,15 @@
+---
+
+  - name: Fichier de sauvegarde de la base Karunati
+    template: src=templates/backup_bdd_naturaliz.sh dest=/srv/backup/ mode="0700"
+    become: true
+
+  - name: Ajout du script Karunati au crontab
+    become: true
+    cron:
+      name: "Sauvegarde de la BDD karunati uniquement"
+      minute: "0"
+      hour: "0"
+      job: "/srv/backup/backup_bdd_naturaliz.sh"
+
+...
