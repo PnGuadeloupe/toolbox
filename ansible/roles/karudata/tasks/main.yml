@@ -1,5 +1,0 @@
----
-  - include: docker.yml
-  - include: baie_mahault.yml
-  - include: postgresql.yml
-...

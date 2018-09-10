@@ -1,9 +1,0 @@
-" ----------------------------------
-" THIS FILE IS INSTALLED BY ANSIBLE
-" ALL CHANGES WILL BE LOST
-" -----------------------------------
-
-syntax on
-set number
-set showcmd
-set mouse=a
